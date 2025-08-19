@@ -25,6 +25,7 @@ public class CreateVideoGame extends Simulation {
                             "}"))
                     .check(jmesPath("token").saveAs("jwtToken")));
 
+
     private static ChainBuilder createNewGame =
             exec(http("Create new game")
                     .post("/videogame")
@@ -36,7 +37,17 @@ public class CreateVideoGame extends Simulation {
                             "  \"releaseDate\": \"2012-05-04\",\n" +
                             "  \"reviewScore\": 85\n" +
                             "}")).check(status().is(200))
-            );
+
+            )
+
+                    .exec(
+                            session -> {
+                                System.out.println(session);
+                                System.out.println("Response Body: " + session.getString("responseBody"));
+                                return session;
+                            }
+
+                    );
 
     private ScenarioBuilder scn = scenario("Create video")
             .exec(authenticate)

@@ -1,0 +1,1690 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="style/favicon.ico">
+<link href="style/style.css" rel="stylesheet" type="text/css">
+<link href="style/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-3.7.1.slim.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/gatling.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/ellipsis.js"></script>
+<script src="js/highstock.js"></script>
+<script src="js/highcharts-more.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/stats.js"></script>
+<title>Gatling Stats - Global Information</title>
+</head>
+<body>
+<script>
+  const storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  if (storedTheme) document.documentElement.setAttribute('data-theme', storedTheme)
+
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const targetTheme = currentTheme === "light" ? "dark" : "light";
+
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+  };
+</script>
+<div class="app-container">
+<div class="frise"></div>
+<div class="head">
+  <div class="gatling-open-source">
+    <a class="gatling-logo gatling-logo-light" href="https://gatling.io" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo-light.svg"></a>
+    <a class="gatling-logo gatling-logo-dark" href="https://gatling.io" target="blank_" title="Gatling Home Page"><img alt="Gatling" src="style/logo-dark.svg"></a>
+    <a class="gatling-documentation" href="https://gatling.io/docs/" target="_blank">Documentation</a>
+  </div>
+  <div class="nav spacer"></div>
+  <a class="enterprise" href="https://gatling.io/enterprise/next-step/" target="_blank"><strong>Try</strong>
+    <img class="logo-enterprise-light" alt="Gatling Enterprise" src="style/logo-enterprise-light.svg">
+    <img class="logo-enterprise-dark" alt="Gatling Enterprise" src="style/logo-enterprise-dark.svg">
+  </a>
+  <button id="theme-toggle" class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle user interface mode">
+    <span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+    <span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+  </button>
+</div>
+<div class="container details">
+  <div class="nav">
+    <ul><li><a class="item" href="#ranges"><span class="nav-label">Ranges</span></a></li>
+<li><a class="item" href="#stats"><span class="nav-label">Stats</span></a></li>
+<li><a class="item" href="#userStartRateDiv"><span class="nav-label">Users start rate</span></a></li>
+<li><a class="item" href="#concurrentUsersDiv"><span class="nav-label">Concurrent users</span></a></li>
+<li><a class="item" href="#responsetimeDistributionContainer"><span class="nav-label">Response time distribution</span></a></li>
+<li><a class="item" href="#responsetimepercentilesovertimeokPercentilesContainer"><span class="nav-label">Response time percentiles</span></a></li>
+<li><a class="item" href="#requests"><span class="nav-label">Requests / sec</span></a></li>
+<li><a class="item" href="#responses"><span class="nav-label">Responses / sec</span></a></li></ul>
+  </div>
+  <div class="cadre">
+    <div class="content">
+      <div class="content-header">
+        <div class="onglet">
+          VideoGameDbFullTest
+        </div>
+        <div class="sous-menu" id="sousMenu">
+          <div class="sous-menu-spacer">
+            <div class="item ouvert"><a href="index.html">Global</a></div>
+<div class="item"><a id="details_link" href="req_get-all-video-g-680998387.html">Details</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="content-in">
+        <div class="container-article">
+          <div class="article">
+            
+            
+<div class="schema-container">
+
+            <div id="ranges" class="schema ranges">
+            </div>
+
+            <div class="schema polar">
+              <div id="container_number_of_requests"></div>
+            </div>
+<div class="simulation-card">
+  <div class="simulation-version-information">
+  <span class="simulation-information-title">Gatling Version</span>
+    <span class="simulation-information-item">
+      <span class="simulation-information-label">Version: </span>
+      <span>3.14.3</span>
+    </span>
+    <span class="simulation-information-item">
+      <span class="simulation-information-label">Released: </span>
+      <span>2025-05-21</span>
+    </span>
+  </div>
+  <div id="simulation-information" class="simulation-version-information">
+    <span class="simulation-information-title">Run Information</span>
+    <div class="simulation-information-container">
+      <span class="simulation-information-item">
+        <span class="simulation-information-label">Date: </span>
+        <span>2025-08-12 11:18:09 GMT</span>
+      </span>
+      <span class="simulation-information-item">
+        <span class="simulation-information-label">Duration: </span>
+        <span>56s </span>
+      </span>
+      <span class="simulation-information-item">
+        <span class="simulation-information-label">Description: </span>
+        <span>&mdash;</span>
+      </span>
+
+    </div>
+  </div>
+</div>
+</div>
+
+                      <div id="statistics_table_container">
+                        <div id="stats" class="statistics extensible-geant collapsed">
+                            <div class="title">
+                              <div id="statistics_title" class="title_base"><span class="title_base_stats">Stats</span><span class="expand-table">Fixed height</span><span id="toggle-stats" class="toggle-table"></span><span class="collapse-table">Full size</span></div>
+                              <div class="right">
+                                  <button class="statistics-button expand-all-button">Expand all groups</button>
+                                  <button class="statistics-button collapse-all-button">Collapse all groups</button>
+                                  <button id="statistics_full_screen" class="statistics-button" onclick="openStatisticsTableModal()"><img alt="Fullscreen" src="style/fullscreen.svg"></button>
+                              </div>
+                            </div>
+                            <div class="scrollable">
+                              <table id="container_statistics_head" class="statistics-in extensible-geant">
+                                  <thead>
+                                      <tr>
+                                          <th rowspan="2" id="col-1" class="header sortable sorted-up"><span>Requests</span></th>
+                                          <th colspan="5" class="header"><span class="executions">Executions</span></th>
+                                          <th colspan="8" class="header"><span class="response-time">Response Time (ms)</span></th>
+                                      </tr>
+                                      <tr>
+                                          <th id="col-2" class="header sortable"><span>Total</span></th>
+                                          <th id="col-3" class="header sortable"><span>OK</span></th>
+                                          <th id="col-4" class="header sortable"><span>KO</span></th>
+                                          <th id="col-5" class="header sortable"><span>% KO</span></th>
+                                          <th id="col-6" class="header sortable"><span><abbr title="Count of events per second">Cnt/s</abbr></span></th>
+                                          <th id="col-7" class="header sortable"><span>Min</span></th>
+<th id="col-8" class="header sortable"><span>50th pct</span></th>
+<th id="col-9" class="header sortable"><span>75th pct</span></th>
+<th id="col-10" class="header sortable"><span>95th pct</span></th>
+<th id="col-11" class="header sortable"><span>99th pct</span></th>
+<th id="col-12" class="header sortable"><span>Max</span></th>
+<th id="col-13" class="header sortable"><span>Mean</span></th>
+<th id="col-14" class="header sortable"><span><abbr title="Standard Deviation">Std Dev</abbr></span></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody><tr >
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="ROOT" style="margin-left: 0px;" class="expand-button ">&nbsp;</span>
+        <a href="index.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-ROOT" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-ROOT')" id="stats-table-ROOT" class="ellipsed-name">All Requests</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">203</td>
+  <td class="value ok col-3">203</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">3.56</td>
+  <td class="value total col-7">297</td>
+  <td class="value total col-8">318</td>
+  <td class="value total col-9">333</td>
+  <td class="value total col-10">436</td>
+  <td class="value total col-11">562</td>
+  <td class="value total col-12">1275</td>
+  <td class="value total col-13">339</td>
+  <td class="value total col-14">81</td>
+</tr></tbody>
+                              </table>
+                              <table id="container_statistics_body" class="statistics-in extensible-geant">
+                                  <tbody><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-all-video-g-680998387" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-all-video-g-680998387.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-all-video-g-680998387" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-all-video-g-680998387')" id="stats-table-req_get-all-video-g-680998387" class="ellipsed-name">Get all video games</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">55</td>
+  <td class="value ok col-3">55</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.96</td>
+  <td class="value total col-7">297</td>
+  <td class="value total col-8">319</td>
+  <td class="value total col-9">366</td>
+  <td class="value total col-10">530</td>
+  <td class="value total col-11">1275</td>
+  <td class="value total col-12">1275</td>
+  <td class="value total col-13">363</td>
+  <td class="value total col-14">142</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_authenticate-1885436661" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_authenticate-1885436661.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_authenticate-1885436661" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_authenticate-1885436661')" id="stats-table-req_authenticate-1885436661" class="ellipsed-name">Authenticate</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">53</td>
+  <td class="value ok col-3">53</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.93</td>
+  <td class="value total col-7">303</td>
+  <td class="value total col-8">318</td>
+  <td class="value total col-9">330</td>
+  <td class="value total col-10">377</td>
+  <td class="value total col-11">562</td>
+  <td class="value total col-12">562</td>
+  <td class="value total col-13">332</td>
+  <td class="value total col-14">46</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted-172174524" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted-172174524.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted-172174524" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted-172174524')" id="stats-table-req_get-last-posted-172174524" class="ellipsed-name">Get Last Posted Game - SimCity 2000</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">7</td>
+  <td class="value ok col-3">7</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.12</td>
+  <td class="value total col-7">312</td>
+  <td class="value total col-8">336</td>
+  <td class="value total col-9">361</td>
+  <td class="value total col-10">402</td>
+  <td class="value total col-11">402</td>
+  <td class="value total col-12">402</td>
+  <td class="value total col-13">340</td>
+  <td class="value total col-14">30</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---s-2113404008" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---s-2113404008.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---s-2113404008" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---s-2113404008')" id="stats-table-req_delete-game---s-2113404008" class="ellipsed-name">Delete Game - SimCity 2000</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">7</td>
+  <td class="value ok col-3">7</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.12</td>
+  <td class="value total col-7">316</td>
+  <td class="value total col-8">318</td>
+  <td class="value total col-9">386</td>
+  <td class="value total col-10">400</td>
+  <td class="value total col-11">400</td>
+  <td class="value total col-12">400</td>
+  <td class="value total col-13">347</td>
+  <td class="value total col-14">35</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted-2061073480" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted-2061073480.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted-2061073480" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted-2061073480')" id="stats-table-req_get-last-posted-2061073480" class="ellipsed-name">Get Last Posted Game - Gran Turismo 3</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">11</td>
+  <td class="value ok col-3">11</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.19</td>
+  <td class="value total col-7">304</td>
+  <td class="value total col-8">315</td>
+  <td class="value total col-9">322</td>
+  <td class="value total col-10">385</td>
+  <td class="value total col-11">385</td>
+  <td class="value total col-12">385</td>
+  <td class="value total col-13">320</td>
+  <td class="value total col-14">21</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted--305138391" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted--305138391.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted--305138391" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted--305138391')" id="stats-table-req_get-last-posted--305138391" class="ellipsed-name">Get Last Posted Game - Doom</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">4</td>
+  <td class="value ok col-3">4</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.07</td>
+  <td class="value total col-7">299</td>
+  <td class="value total col-8">323</td>
+  <td class="value total col-9">396</td>
+  <td class="value total col-10">396</td>
+  <td class="value total col-11">396</td>
+  <td class="value total col-12">396</td>
+  <td class="value total col-13">332</td>
+  <td class="value total col-14">38</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---g--728166156" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---g--728166156.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---g--728166156" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---g--728166156')" id="stats-table-req_delete-game---g--728166156" class="ellipsed-name">Delete Game - Gran Turismo 3</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">11</td>
+  <td class="value ok col-3">11</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.19</td>
+  <td class="value total col-7">305</td>
+  <td class="value total col-8">319</td>
+  <td class="value total col-9">379</td>
+  <td class="value total col-10">423</td>
+  <td class="value total col-11">423</td>
+  <td class="value total col-12">423</td>
+  <td class="value total col-13">343</td>
+  <td class="value total col-14">40</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---d--218812203" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---d--218812203.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---d--218812203" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---d--218812203')" id="stats-table-req_delete-game---d--218812203" class="ellipsed-name">Delete Game - Doom</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">4</td>
+  <td class="value ok col-3">4</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.07</td>
+  <td class="value total col-7">315</td>
+  <td class="value total col-8">344</td>
+  <td class="value total col-9">352</td>
+  <td class="value total col-10">352</td>
+  <td class="value total col-11">352</td>
+  <td class="value total col-12">352</td>
+  <td class="value total col-13">332</td>
+  <td class="value total col-14">16</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted-1058281517" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted-1058281517.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted-1058281517" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted-1058281517')" id="stats-table-req_get-last-posted-1058281517" class="ellipsed-name">Get Last Posted Game - Minecraft</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">5</td>
+  <td class="value ok col-3">5</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.09</td>
+  <td class="value total col-7">304</td>
+  <td class="value total col-8">313</td>
+  <td class="value total col-9">332</td>
+  <td class="value total col-10">363</td>
+  <td class="value total col-11">363</td>
+  <td class="value total col-12">363</td>
+  <td class="value total col-13">324</td>
+  <td class="value total col-14">22</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted--419070323" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted--419070323.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted--419070323" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted--419070323')" id="stats-table-req_get-last-posted--419070323" class="ellipsed-name">Get Last Posted Game - Grand Theft Auto III</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">5</td>
+  <td class="value ok col-3">5</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.09</td>
+  <td class="value total col-7">313</td>
+  <td class="value total col-8">322</td>
+  <td class="value total col-9">324</td>
+  <td class="value total col-10">328</td>
+  <td class="value total col-11">328</td>
+  <td class="value total col-12">328</td>
+  <td class="value total col-13">320</td>
+  <td class="value total col-14">6</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---m-2088585217" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---m-2088585217.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---m-2088585217" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---m-2088585217')" id="stats-table-req_delete-game---m-2088585217" class="ellipsed-name">Delete Game - Minecraft</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">5</td>
+  <td class="value ok col-3">5</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.09</td>
+  <td class="value total col-7">305</td>
+  <td class="value total col-8">328</td>
+  <td class="value total col-9">332</td>
+  <td class="value total col-10">357</td>
+  <td class="value total col-11">357</td>
+  <td class="value total col-12">357</td>
+  <td class="value total col-13">326</td>
+  <td class="value total col-14">19</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted-426236846" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted-426236846.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted-426236846" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted-426236846')" id="stats-table-req_get-last-posted-426236846" class="ellipsed-name">Get Last Posted Game - The Legend of Zelda: Ocarina of Time</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">3</td>
+  <td class="value ok col-3">3</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.05</td>
+  <td class="value total col-7">301</td>
+  <td class="value total col-8">324</td>
+  <td class="value total col-9">332</td>
+  <td class="value total col-10">332</td>
+  <td class="value total col-11">332</td>
+  <td class="value total col-12">332</td>
+  <td class="value total col-13">319</td>
+  <td class="value total col-14">13</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---g-1517675065" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---g-1517675065.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---g-1517675065" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---g-1517675065')" id="stats-table-req_delete-game---g-1517675065" class="ellipsed-name">Delete Game - Grand Theft Auto III</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">4</td>
+  <td class="value ok col-3">4</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.07</td>
+  <td class="value total col-7">312</td>
+  <td class="value total col-8">318</td>
+  <td class="value total col-9">319</td>
+  <td class="value total col-10">319</td>
+  <td class="value total col-11">319</td>
+  <td class="value total col-12">319</td>
+  <td class="value total col-13">317</td>
+  <td class="value total col-14">3</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---t--1881970854" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---t--1881970854.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---t--1881970854" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---t--1881970854')" id="stats-table-req_delete-game---t--1881970854" class="ellipsed-name">Delete Game - The Legend of Zelda: Ocarina of Time</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">3</td>
+  <td class="value ok col-3">3</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.05</td>
+  <td class="value total col-7">309</td>
+  <td class="value total col-8">324</td>
+  <td class="value total col-9">327</td>
+  <td class="value total col-10">327</td>
+  <td class="value total col-11">327</td>
+  <td class="value total col-12">327</td>
+  <td class="value total col-13">320</td>
+  <td class="value total col-14">8</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted--1976695118" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted--1976695118.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted--1976695118" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted--1976695118')" id="stats-table-req_get-last-posted--1976695118" class="ellipsed-name">Get Last Posted Game - Final Fantasy VII</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">5</td>
+  <td class="value ok col-3">5</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.09</td>
+  <td class="value total col-7">304</td>
+  <td class="value total col-8">305</td>
+  <td class="value total col-9">315</td>
+  <td class="value total col-10">316</td>
+  <td class="value total col-11">316</td>
+  <td class="value total col-12">316</td>
+  <td class="value total col-13">309</td>
+  <td class="value total col-14">5</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---f--1482415482" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---f--1482415482.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---f--1482415482" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---f--1482415482')" id="stats-table-req_delete-game---f--1482415482" class="ellipsed-name">Delete Game - Final Fantasy VII</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">4</td>
+  <td class="value ok col-3">4</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.07</td>
+  <td class="value total col-7">317</td>
+  <td class="value total col-8">336</td>
+  <td class="value total col-9">378</td>
+  <td class="value total col-10">378</td>
+  <td class="value total col-11">378</td>
+  <td class="value total col-12">378</td>
+  <td class="value total col-13">340</td>
+  <td class="value total col-14">23</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted-119098392" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted-119098392.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted-119098392" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted-119098392')" id="stats-table-req_get-last-posted-119098392" class="ellipsed-name">Get Last Posted Game - Resident Evil 4</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">6</td>
+  <td class="value ok col-3">6</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.11</td>
+  <td class="value total col-7">298</td>
+  <td class="value total col-8">313</td>
+  <td class="value total col-9">313</td>
+  <td class="value total col-10">316</td>
+  <td class="value total col-11">316</td>
+  <td class="value total col-12">316</td>
+  <td class="value total col-13">310</td>
+  <td class="value total col-14">6</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---r--447984404" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---r--447984404.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---r--447984404" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---r--447984404')" id="stats-table-req_delete-game---r--447984404" class="ellipsed-name">Delete Game - Resident Evil 4</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">5</td>
+  <td class="value ok col-3">5</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.09</td>
+  <td class="value total col-7">313</td>
+  <td class="value total col-8">316</td>
+  <td class="value total col-9">326</td>
+  <td class="value total col-10">415</td>
+  <td class="value total col-11">415</td>
+  <td class="value total col-12">415</td>
+  <td class="value total col-13">337</td>
+  <td class="value total col-14">39</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted--731229287" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted--731229287.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted--731229287" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted--731229287')" id="stats-table-req_get-last-posted--731229287" class="ellipsed-name">Get Last Posted Game - Tetris</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">2</td>
+  <td class="value ok col-3">2</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.04</td>
+  <td class="value total col-7">303</td>
+  <td class="value total col-8">311</td>
+  <td class="value total col-9">311</td>
+  <td class="value total col-10">311</td>
+  <td class="value total col-11">311</td>
+  <td class="value total col-12">311</td>
+  <td class="value total col-13">307</td>
+  <td class="value total col-14">4</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---t-623858757" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---t-623858757.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---t-623858757" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---t-623858757')" id="stats-table-req_delete-game---t-623858757" class="ellipsed-name">Delete Game - Tetris</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">2</td>
+  <td class="value ok col-3">2</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.04</td>
+  <td class="value total col-7">315</td>
+  <td class="value total col-8">338</td>
+  <td class="value total col-9">338</td>
+  <td class="value total col-10">338</td>
+  <td class="value total col-11">338</td>
+  <td class="value total col-12">338</td>
+  <td class="value total col-13">327</td>
+  <td class="value total col-14">12</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_get-last-posted--2045010433" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_get-last-posted--2045010433.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_get-last-posted--2045010433" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_get-last-posted--2045010433')" id="stats-table-req_get-last-posted--2045010433" class="ellipsed-name">Get Last Posted Game - Super Mario 64</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">1</td>
+  <td class="value ok col-3">1</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.02</td>
+  <td class="value total col-7">325</td>
+  <td class="value total col-8">325</td>
+  <td class="value total col-9">325</td>
+  <td class="value total col-10">325</td>
+  <td class="value total col-11">325</td>
+  <td class="value total col-12">325</td>
+  <td class="value total col-13">325</td>
+  <td class="value total col-14">0</td>
+</tr><tr data-parent="ROOT">
+  <td class="total col-1">
+    <div class="expandable-container">
+      <span id="req_delete-game---s--539282773" style="margin-left: 0px;" class="expand-button hidden">&nbsp;</span>
+        <a href="req_delete-game---s--539282773.html" class="withTooltip">
+          <span class="table-cell-tooltip" id="parent-stats-table-req_delete-game---s--539282773" data-toggle="popover" data-placement="right" data-container="body" data-content="">
+            <span onmouseover="isEllipsed('stats-table-req_delete-game---s--539282773')" id="stats-table-req_delete-game---s--539282773" class="ellipsed-name">Delete Game - Super Mario 64</span>
+          </span>
+        </a>
+      <span class="value" style="display:none;">0</span>
+    </div>
+  </td>
+  <td class="value total col-2">1</td>
+  <td class="value ok col-3">1</td>
+  <td class="value ko col-4">-</td>
+  <td class="value ko col-5">0</td>
+  <td class="value total col-6">0.02</td>
+  <td class="value total col-7">325</td>
+  <td class="value total col-8">325</td>
+  <td class="value total col-9">325</td>
+  <td class="value total col-10">325</td>
+  <td class="value total col-11">325</td>
+  <td class="value total col-12">325</td>
+  <td class="value total col-13">325</td>
+  <td class="value total col-14">0</td>
+</tr></tbody>
+                              </table>
+                            </div>
+                        </div>
+                      </div>
+<dialog id="statistics_table_modal" class="statistics-table-modal">
+  <div class="statistics-table-modal-header"><button class="button-modal" onclick="closeStatisticsTableModal()"><img alt="Close" src="style/close.svg"></button></div>
+  <div class="statistics-table-modal-container">
+    <div id="statistics_table_modal_content" class="statistics-table-modal-content"></div>
+  </div>
+</dialog>
+<div class="statistics extensible-geant collapsed">
+    <div class="title">
+        Errors
+    </div>
+    <table id="container_errors" class="statistics-in extensible-geant">
+        <thead>
+            <tr>
+                <th id="error-col-1" class="header sortable"><span>Error</span></th>
+                <th id="error-col-2" class="header sortable"><span>Count</span></th>
+                <th id="error-col-3" class="header sortable"><span>Percentage</span></th>
+            </tr>
+        </thead>
+		<tbody>
+		    
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Gran Turismo 3: No attribute named 'gameName' is defined <span class="value" style="display:none">0</span></td>
+		    	<td class="value error-col-2 total ko">11</td>
+		    	<td class="value error-col-3 total ko">21.57%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - SimCity 2000: No attribute named 'gameName' is defined <span class="value" style="display:none">1</span></td>
+		    	<td class="value error-col-2 total ko">7</td>
+		    	<td class="value error-col-3 total ko">13.73%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Final Fantasy VII: No attribute named 'gameName' is defined <span class="value" style="display:none">2</span></td>
+		    	<td class="value error-col-2 total ko">6</td>
+		    	<td class="value error-col-3 total ko">11.76%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Resident Evil 4: No attribute named 'gameName' is defined <span class="value" style="display:none">3</span></td>
+		    	<td class="value error-col-2 total ko">6</td>
+		    	<td class="value error-col-3 total ko">11.76%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Grand Theft Auto III: No attribute named 'gameName' is defined <span class="value" style="display:none">4</span></td>
+		    	<td class="value error-col-2 total ko">5</td>
+		    	<td class="value error-col-3 total ko">9.8%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Minecraft: No attribute named 'gameName' is defined <span class="value" style="display:none">5</span></td>
+		    	<td class="value error-col-2 total ko">5</td>
+		    	<td class="value error-col-3 total ko">9.8%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Doom: No attribute named 'gameName' is defined <span class="value" style="display:none">6</span></td>
+		    	<td class="value error-col-2 total ko">4</td>
+		    	<td class="value error-col-3 total ko">7.84%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - The Legend of Zelda: Ocarina of Time: No attribute named 'gameName' is defined <span class="value" style="display:none">7</span></td>
+		    	<td class="value error-col-2 total ko">4</td>
+		    	<td class="value error-col-3 total ko">7.84%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Tetris: No attribute named 'gameName' is defined <span class="value" style="display:none">8</span></td>
+		    	<td class="value error-col-2 total ko">2</td>
+		    	<td class="value error-col-3 total ko">3.92%</td>
+		    </tr>
+		    <tr>
+		    	<td class="error-col-1 total ko">Create New Game - Super Mario 64: No attribute named 'gameName' is defined <span class="value" style="display:none">9</span></td>
+		    	<td class="value error-col-2 total ko">1</td>
+		    	<td class="value error-col-3 total ko">1.96%</td>
+		    </tr>
+		</tbody>
+    </table>
+</div>
+
+            <div class="schema geant">
+              <div id="userStartRate" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="concurrentUsers" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="responsetimeDistributionContainer" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+              <div id="responsetimepercentilesovertimeokPercentilesContainer" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+                <div id="requests" class="geant"></div>
+            </div>
+
+            <div class="schema geant">
+                <div id="responses" class="geant"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.simulation-tooltip').popover({trigger:'hover', placement:'left'});
+        
+        setActiveMenu();
+        
+Highcharts.setOptions({
+  global: { useUTC: false }
+});
+
+new Highcharts.Chart({
+  chart: {
+    renderTo: 'ranges',
+    marginRight: 100
+  },
+  credits: { enabled: false },
+  legend: { enabled: false },
+  title: {
+    text: '<span class="chart_title">Response Time Ranges</span>',
+    useHTML: true
+  },
+  xAxis: {
+    categories: [
+      "t < 800 ms",
+      "t >= 800 ms <br> t < 1200 ms",
+      "t >= 1200 ms",
+      "failed"
+    ]
+  },
+  yAxis: {
+    title: { text: 'Number of Requests' },
+    reversedStacks: false
+  },
+  tooltip: {
+    formatter: function() {
+      var s;
+      if (this.point.name) { // the pie chart
+        s = ''+ this.point.name +': '+ this.y +'% requests';
+      } else {
+        s = ''+ this.y + ' requests';
+      }
+      return s;
+    }
+  },
+  plotOptions: {
+    series: {
+      stacking: 'normal',
+      shadow: true
+    }
+  },
+  series: [
+    {
+      type: 'column',
+      data: [{
+      	color: '#68b65c',
+      	y: 202
+      },
+      {
+      	color: '#FFDD00',
+      	y: 0
+      },
+      {
+      	color: '#FFA900',
+      	y: 1
+      },
+      {
+      	color: '#f15b4f',
+      	y: 0
+      }]
+    },
+    {
+      type: 'pie',
+      name: 'Percentages',
+      data: [
+        {
+          name: "t < 800 ms",
+          y: 99.50738916256158,
+          color: '#68b65c'
+        },
+        {
+          name: "800 ms <= t < 1200 ms",
+          y: 0.0,
+          color: '#FFDD00'
+        },
+        {
+          name: "t >= 1200 ms",
+          y: 0.49261083743842365,
+          color: '#FFA900'
+        },
+        {
+          name: "failed",
+          y: 0.0,
+          color: '#f15b4f'
+        }
+      ],
+      center: [345, 0],
+      size: 90,
+      showInLegend: false,
+      dataLabels: { enabled: false }
+    }
+  ]
+});
+
+var tickInterval = 1.0;
+
+new Highcharts.Chart({
+  chart: {
+    renderTo:'container_number_of_requests',
+    polar:true,
+    type:'column',
+    height:330
+  },
+  credits:{
+    enabled:false
+  },
+  title:{
+    text:'<span class="chart_title">Number of requests</span>',
+    useHTML: true,
+    widthAdjust:-20
+  },
+  xAxis:{
+    tickmarkPlacement:'on',
+    tickInterval: tickInterval,
+    categories: ['Get all video games', 'Authenticate', 'Get Last Posted Game - SimCity 2000', 'Delete Game - SimCity 2000', 'Get Last Posted Game - Gran Turismo 3', 'Get Last Posted Game - Doom', 'Delete Game - Gran Turismo 3', 'Delete Game - Doom', 'Get Last Posted Game - Minecraft', 'Get Last Posted Game - Grand Theft Auto III', 'Delete Game - Minecraft', 'Get Last Posted Game - The Legend of Zelda: Ocarina of Time', 'Delete Game - Grand Theft Auto III', 'Delete Game - The Legend of Zelda: Ocarina of Time', 'Get Last Posted Game - Final Fantasy VII', 'Delete Game - Final Fantasy VII', 'Get Last Posted Game - Resident Evil 4', 'Delete Game - Resident Evil 4', 'Get Last Posted Game - Tetris', 'Delete Game - Tetris', 'Get Last Posted Game - Super Mario 64', 'Delete Game - Super Mario 64'],
+    labels:{ enabled:false }
+  },
+  yAxis:{
+    min:0,
+    reversedStacks: false
+  },
+  plotOptions:{
+    series:{
+      stacking:'normal',
+      groupPadding:0,
+      pointPlacement:'on',
+      shadow: true
+    }
+  },
+  legend: {
+      borderWidth: 0,
+      itemStyle: { fontWeight: "normal" },
+      symbolRadius: 0
+  },
+  series:[
+      {
+      name:'OK',
+      data:[55, 53, 7, 7, 11, 4, 11, 4, 5, 5, 5, 3, 4, 3, 5, 4, 6, 5, 2, 2, 1, 1],
+      color:"#68b65c"
+    },
+    {
+      name:'KO',
+      data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      color:"#f15b4f"
+    }
+  ]
+});
+
+	    $('#container_exceptions').sortable('#container_exceptions');
+    
+$('#container_statistics_head').sortable('#container_statistics_body');
+$('.statistics').expandable();
+
+$('#statistics_title span').attr('style', 'display: none;');
+
+$('.table-cell-tooltip').popover({trigger:'hover'});
+
+	    $('#container_errors').sortable('#container_errors');
+    
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'userStartRate',
+    zoomType: 'x'
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    align: 'right',
+    verticalAlign: 'top',
+    layout: 'vertical',
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of users started per second</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis: {
+    title: { text: 'Number of users started' },
+    opposite: false,
+    min: 0
+  },
+  series: [
+    {
+color: '#5E7BE2',
+name: 'Video game db - realistic load',
+data: [
+  [1754997490000, 1],[1754997491000, 1],[1754997492000, 0],[1754997493000, 1],[1754997494000, 0],[1754997495000, 1],[1754997496000, 0],[1754997497000, 1],[1754997498000, 0],[1754997499000, 1],[1754997500000, 0],[1754997501000, 1],[1754997502000, 0],[1754997503000, 1],[1754997504000, 0],[1754997505000, 1],[1754997506000, 0],[1754997507000, 1],[1754997508000, 0],[1754997509000, 0],[1754997510000, 0],[1754997511000, 0],[1754997512000, 0],[1754997513000, 0],[1754997514000, 0],[1754997515000, 0],[1754997516000, 0],[1754997517000, 0],[1754997518000, 0],[1754997519000, 0],[1754997520000, 0],[1754997521000, 0],[1754997522000, 0],[1754997523000, 0],[1754997524000, 0],[1754997525000, 0],[1754997526000, 0],[1754997527000, 0],[1754997528000, 0],[1754997529000, 0],[1754997530000, 0],[1754997531000, 0],[1754997532000, 0],[1754997533000, 0],[1754997534000, 0],[1754997535000, 0],[1754997536000, 0],[1754997537000, 0],[1754997538000, 0],[1754997539000, 0],[1754997540000, 0],[1754997541000, 0],[1754997542000, 0],[1754997543000, 0],[1754997544000, 0],[1754997545000, 0],[1754997546000, 0]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+},
+    {
+color: '#FFA900',
+name: 'All users',
+data: [
+  [1754997490000, 1],[1754997491000, 1],[1754997492000, 0],[1754997493000, 1],[1754997494000, 0],[1754997495000, 1],[1754997496000, 0],[1754997497000, 1],[1754997498000, 0],[1754997499000, 1],[1754997500000, 0],[1754997501000, 1],[1754997502000, 0],[1754997503000, 1],[1754997504000, 0],[1754997505000, 1],[1754997506000, 0],[1754997507000, 1],[1754997508000, 0],[1754997509000, 0],[1754997510000, 0],[1754997511000, 0],[1754997512000, 0],[1754997513000, 0],[1754997514000, 0],[1754997515000, 0],[1754997516000, 0],[1754997517000, 0],[1754997518000, 0],[1754997519000, 0],[1754997520000, 0],[1754997521000, 0],[1754997522000, 0],[1754997523000, 0],[1754997524000, 0],[1754997525000, 0],[1754997526000, 0],[1754997527000, 0],[1754997528000, 0],[1754997529000, 0],[1754997530000, 0],[1754997531000, 0],[1754997532000, 0],[1754997533000, 0],[1754997534000, 0],[1754997535000, 0],[1754997536000, 0],[1754997537000, 0],[1754997538000, 0],[1754997539000, 0],[1754997540000, 0],[1754997541000, 0],[1754997542000, 0],[1754997543000, 0],[1754997544000, 0],[1754997545000, 0],[1754997546000, 0]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'concurrentUsers',
+    zoomType: 'x'
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    align: 'right',
+    verticalAlign: 'top',
+    layout: 'vertical',
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of concurrent users</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis: {
+    title: { text: 'Number of concurrent users' },
+    opposite: false,
+    min: 0
+  },
+  series: [
+    {
+color: '#5E7BE2',
+name: 'Video game db - realistic load',
+data: [
+  [1754997490000, 1],[1754997491000, 2],[1754997492000, 2],[1754997493000, 3],[1754997494000, 3],[1754997495000, 4],[1754997496000, 4],[1754997497000, 5],[1754997498000, 5],[1754997499000, 6],[1754997500000, 6],[1754997501000, 7],[1754997502000, 7],[1754997503000, 8],[1754997504000, 8],[1754997505000, 9],[1754997506000, 9],[1754997507000, 10],[1754997508000, 10],[1754997509000, 10],[1754997510000, 10],[1754997511000, 10],[1754997512000, 10],[1754997513000, 10],[1754997514000, 10],[1754997515000, 10],[1754997516000, 10],[1754997517000, 10],[1754997518000, 10],[1754997519000, 10],[1754997520000, 10],[1754997521000, 10],[1754997522000, 10],[1754997523000, 10],[1754997524000, 10],[1754997525000, 10],[1754997526000, 10],[1754997527000, 10],[1754997528000, 10],[1754997529000, 10],[1754997530000, 10],[1754997531000, 10],[1754997532000, 10],[1754997533000, 10],[1754997534000, 10],[1754997535000, 10],[1754997536000, 10],[1754997537000, 10],[1754997538000, 10],[1754997539000, 10],[1754997540000, 10],[1754997541000, 10],[1754997542000, 10],[1754997543000, 10],[1754997544000, 10],[1754997545000, 10],[1754997546000, 10]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+},
+    {
+color: '#FFA900',
+name: 'All users',
+data: [
+  [1754997490000, 1],[1754997491000, 2],[1754997492000, 2],[1754997493000, 3],[1754997494000, 3],[1754997495000, 4],[1754997496000, 4],[1754997497000, 5],[1754997498000, 5],[1754997499000, 6],[1754997500000, 6],[1754997501000, 7],[1754997502000, 7],[1754997503000, 8],[1754997504000, 8],[1754997505000, 9],[1754997506000, 9],[1754997507000, 10],[1754997508000, 10],[1754997509000, 10],[1754997510000, 10],[1754997511000, 10],[1754997512000, 10],[1754997513000, 10],[1754997514000, 10],[1754997515000, 10],[1754997516000, 10],[1754997517000, 10],[1754997518000, 10],[1754997519000, 10],[1754997520000, 10],[1754997521000, 10],[1754997522000, 10],[1754997523000, 10],[1754997524000, 10],[1754997525000, 10],[1754997526000, 10],[1754997527000, 10],[1754997528000, 10],[1754997529000, 10],[1754997530000, 10],[1754997531000, 10],[1754997532000, 10],[1754997533000, 10],[1754997534000, 10],[1754997535000, 10],[1754997536000, 10],[1754997537000, 10],[1754997538000, 10],[1754997539000, 10],[1754997540000, 10],[1754997541000, 10],[1754997542000, 10],[1754997543000, 10],[1754997544000, 10],[1754997545000, 10],[1754997546000, 10]
+],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+}
+  ]
+});
+
+new Highcharts.Chart({
+  chart: {
+    renderTo: 'responsetimeDistributionContainer',
+    type: 'column',
+    marginBottom: 60
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: 5,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Response Time Distribution</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  xAxis: {
+    categories: ['302', '312', '321', '331', '341', '351', '361', '370', '380', '390', '400', '409', '419', '429', '439', '449', '458', '468', '478', '488', '497', '507', '517', '527', '537', '546', '556', '566', '576', '586', '595', '605', '615', '625', '634', '644', '654', '664', '674', '683', '693', '703', '713', '722', '732', '742', '752', '762', '771', '781', '791', '801', '810', '820', '830', '840', '850', '859', '869', '879', '889', '898', '908', '918', '928', '938', '947', '957', '967', '977', '986', '996', '1006', '1016', '1026', '1035', '1045', '1055', '1065', '1075', '1084', '1094', '1104', '1114', '1123', '1133', '1143', '1153', '1163', '1172', '1182', '1192', '1202', '1211', '1221', '1231', '1241', '1251', '1260', '1270'],
+    tickInterval: 20
+  },
+  yAxis: {
+    min: 0,
+    title: { text: 'Percentage of Requests' },
+    reversedStacks: false
+  },
+  tooltip: {
+    formatter: function() {
+      return '<b>'+ this.x +' ms</b><br/>'+
+      this.series.name +': '+ this.y +' %<br/>'+
+      'Total: '+ this.point.stackTotal + ' %';
+    }
+  },
+  plotOptions: {
+    series: {
+      groupPadding: 0,
+      stacking: 'normal',
+	    shadow: true
+    }
+  },
+  series: [
+  	{
+type: 'column',
+color: '#68b65c',
+name: 'OK',
+data: [
+  10.34,33.99,23.64,8.37,3.44,3.44,2.95,1.97,2.46,0.49,1.97,0.0,1.47,0.0,0.98,0.49,0.49,0.98,0.0,0.0,0.0,0.0,0.0,0.49,0.49,0.0,0.0,0.49,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.49,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.49
+],
+tooltip: { yDecimals: 0, ySuffix: 'ms' }
+},
+  	{
+type: 'column',
+color: '#f15b4f',
+name: 'KO',
+data: [
+  0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+],
+tooltip: { yDecimals: 0, ySuffix: 'ms' }
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'responsetimepercentilesovertimeokPercentilesContainer',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  colors: ['#c4fd90', '#7ff77f', '#6ff2ad', '#61ede6', '#58c7e0', '#4ea1d4', '#487ad9', '#3f52cc', '#7335dc', '#c73905', '#FFA900'],
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title chart_title_">Response Time Percentiles over Time (OK)</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false,
+    baseSeries: 9
+  },
+  rangeSelector: {
+    rangeSelector: { align: "left" },
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#92918C',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+        },
+        select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Response Time (ms)' },
+      opposite: false
+    }
+  ],
+  plotOptions: {
+    arearange: { lineWidth: 1 },
+    series: {
+      dataGrouping: { enabled: false }
+    }
+  },
+  series: [
+  
+         {
+pointInterval: 1000,
+name: 'min',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 562], [1754997497000, null], [1754997498000, 341], [1754997499000, 325], [1754997500000, 319], [1754997501000, 314], [1754997502000, 343], [1754997503000, 315], [1754997504000, 315], [1754997505000, 311], [1754997506000, 309], [1754997507000, 299], [1754997508000, 308], [1754997509000, 328], [1754997510000, 308], [1754997511000, 308], [1754997512000, 308], [1754997513000, 304], [1754997514000, 311], [1754997515000, 329], [1754997516000, 305], [1754997517000, 308], [1754997518000, 312], [1754997519000, 307], [1754997520000, 311], [1754997521000, 318], [1754997522000, 304], [1754997523000, 301], [1754997524000, 307], [1754997525000, 310], [1754997526000, 302], [1754997527000, 316], [1754997528000, 299], [1754997529000, 307], [1754997530000, 310], [1754997531000, 304], [1754997532000, 307], [1754997533000, 307], [1754997534000, 305], [1754997535000, 307], [1754997536000, 305], [1754997537000, 317], [1754997538000, 303], [1754997539000, 316], [1754997540000, 298], [1754997541000, 315], [1754997542000, 302], [1754997543000, 297], [1754997544000, 299], [1754997545000, 303], [1754997546000, 298]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 10
+},
+         {
+pointInterval: 1000,
+name: '25%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 562], [1754997497000, null], [1754997498000, 341], [1754997499000, 325], [1754997500000, 319], [1754997501000, 314], [1754997502000, 343], [1754997503000, 315], [1754997504000, 317], [1754997505000, 311], [1754997506000, 312], [1754997507000, 314], [1754997508000, 319], [1754997509000, 328], [1754997510000, 314], [1754997511000, 312], [1754997512000, 308], [1754997513000, 308], [1754997514000, 311], [1754997515000, 330], [1754997516000, 305], [1754997517000, 308], [1754997518000, 312], [1754997519000, 319], [1754997520000, 316], [1754997521000, 318], [1754997522000, 307], [1754997523000, 309], [1754997524000, 318], [1754997525000, 310], [1754997526000, 311], [1754997527000, 316], [1754997528000, 311], [1754997529000, 313], [1754997530000, 310], [1754997531000, 304], [1754997532000, 315], [1754997533000, 317], [1754997534000, 306], [1754997535000, 316], [1754997536000, 305], [1754997537000, 317], [1754997538000, 308], [1754997539000, 365], [1754997540000, 305], [1754997541000, 316], [1754997542000, 302], [1754997543000, 312], [1754997544000, 313], [1754997545000, 307], [1754997546000, 315]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 9
+},
+         {
+pointInterval: 1000,
+name: '50%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 386], [1754997501000, 323], [1754997502000, 366], [1754997503000, 317], [1754997504000, 319], [1754997505000, 402], [1754997506000, 319], [1754997507000, 318], [1754997508000, 322], [1754997509000, 379], [1754997510000, 322], [1754997511000, 316], [1754997512000, 318], [1754997513000, 319], [1754997514000, 314], [1754997515000, 332], [1754997516000, 325], [1754997517000, 308], [1754997518000, 315], [1754997519000, 323], [1754997520000, 319], [1754997521000, 367], [1754997522000, 313], [1754997523000, 344], [1754997524000, 323], [1754997525000, 321], [1754997526000, 315], [1754997527000, 377], [1754997528000, 319], [1754997529000, 316], [1754997530000, 310], [1754997531000, 317], [1754997532000, 316], [1754997533000, 348], [1754997534000, 309], [1754997535000, 317], [1754997536000, 313], [1754997537000, 327], [1754997538000, 317], [1754997539000, 368], [1754997540000, 315], [1754997541000, 352], [1754997542000, 313], [1754997543000, 317], [1754997544000, 313], [1754997545000, 309], [1754997546000, 316]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 8
+},
+         {
+pointInterval: 1000,
+name: '75%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 471], [1754997501000, 375], [1754997502000, 457], [1754997503000, 328], [1754997504000, 436], [1754997505000, 402], [1754997506000, 438], [1754997507000, 363], [1754997508000, 446], [1754997509000, 379], [1754997510000, 324], [1754997511000, 324], [1754997512000, 343], [1754997513000, 327], [1754997514000, 314], [1754997515000, 336], [1754997516000, 359], [1754997517000, 309], [1754997518000, 336], [1754997519000, 326], [1754997520000, 326], [1754997521000, 367], [1754997522000, 328], [1754997523000, 349], [1754997524000, 378], [1754997525000, 365], [1754997526000, 324], [1754997527000, 378], [1754997528000, 328], [1754997529000, 320], [1754997530000, 344], [1754997531000, 318], [1754997532000, 320], [1754997533000, 361], [1754997534000, 311], [1754997535000, 325], [1754997536000, 316], [1754997537000, 385], [1754997538000, 320], [1754997539000, 396], [1754997540000, 319], [1754997541000, 353], [1754997542000, 317], [1754997543000, 317], [1754997544000, 317], [1754997545000, 322], [1754997546000, 323]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 7
+},
+         {
+pointInterval: 1000,
+name: '80%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 471], [1754997501000, 375], [1754997502000, 457], [1754997503000, 328], [1754997504000, 436], [1754997505000, 402], [1754997506000, 438], [1754997507000, 363], [1754997508000, 446], [1754997509000, 379], [1754997510000, 324], [1754997511000, 345], [1754997512000, 343], [1754997513000, 327], [1754997514000, 314], [1754997515000, 336], [1754997516000, 359], [1754997517000, 309], [1754997518000, 336], [1754997519000, 423], [1754997520000, 326], [1754997521000, 367], [1754997522000, 328], [1754997523000, 349], [1754997524000, 378], [1754997525000, 365], [1754997526000, 332], [1754997527000, 378], [1754997528000, 338], [1754997529000, 327], [1754997530000, 344], [1754997531000, 354], [1754997532000, 320], [1754997533000, 361], [1754997534000, 352], [1754997535000, 325], [1754997536000, 319], [1754997537000, 385], [1754997538000, 325], [1754997539000, 396], [1754997540000, 327], [1754997541000, 353], [1754997542000, 317], [1754997543000, 317], [1754997544000, 317], [1754997545000, 322], [1754997546000, 323]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 6
+},
+         {
+pointInterval: 1000,
+name: '85%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 471], [1754997501000, 375], [1754997502000, 457], [1754997503000, 328], [1754997504000, 436], [1754997505000, 402], [1754997506000, 438], [1754997507000, 363], [1754997508000, 446], [1754997509000, 379], [1754997510000, 357], [1754997511000, 345], [1754997512000, 343], [1754997513000, 328], [1754997514000, 314], [1754997515000, 347], [1754997516000, 359], [1754997517000, 309], [1754997518000, 336], [1754997519000, 423], [1754997520000, 400], [1754997521000, 367], [1754997522000, 415], [1754997523000, 349], [1754997524000, 378], [1754997525000, 365], [1754997526000, 332], [1754997527000, 378], [1754997528000, 338], [1754997529000, 327], [1754997530000, 344], [1754997531000, 354], [1754997532000, 320], [1754997533000, 361], [1754997534000, 352], [1754997535000, 325], [1754997536000, 319], [1754997537000, 385], [1754997538000, 325], [1754997539000, 396], [1754997540000, 327], [1754997541000, 353], [1754997542000, 317], [1754997543000, 327], [1754997544000, 317], [1754997545000, 322], [1754997546000, 323]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 5
+},
+         {
+pointInterval: 1000,
+name: '90%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 471], [1754997501000, 375], [1754997502000, 457], [1754997503000, 328], [1754997504000, 436], [1754997505000, 402], [1754997506000, 438], [1754997507000, 363], [1754997508000, 446], [1754997509000, 379], [1754997510000, 357], [1754997511000, 345], [1754997512000, 343], [1754997513000, 328], [1754997514000, 314], [1754997515000, 347], [1754997516000, 359], [1754997517000, 309], [1754997518000, 336], [1754997519000, 423], [1754997520000, 400], [1754997521000, 367], [1754997522000, 415], [1754997523000, 349], [1754997524000, 378], [1754997525000, 365], [1754997526000, 332], [1754997527000, 378], [1754997528000, 338], [1754997529000, 327], [1754997530000, 344], [1754997531000, 354], [1754997532000, 320], [1754997533000, 361], [1754997534000, 352], [1754997535000, 325], [1754997536000, 319], [1754997537000, 385], [1754997538000, 325], [1754997539000, 396], [1754997540000, 327], [1754997541000, 353], [1754997542000, 317], [1754997543000, 327], [1754997544000, 317], [1754997545000, 322], [1754997546000, 323]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 4
+},
+         {
+pointInterval: 1000,
+name: '95%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 471], [1754997501000, 375], [1754997502000, 457], [1754997503000, 328], [1754997504000, 436], [1754997505000, 402], [1754997506000, 438], [1754997507000, 363], [1754997508000, 446], [1754997509000, 379], [1754997510000, 357], [1754997511000, 345], [1754997512000, 343], [1754997513000, 328], [1754997514000, 314], [1754997515000, 347], [1754997516000, 359], [1754997517000, 309], [1754997518000, 336], [1754997519000, 423], [1754997520000, 400], [1754997521000, 367], [1754997522000, 415], [1754997523000, 349], [1754997524000, 378], [1754997525000, 365], [1754997526000, 332], [1754997527000, 378], [1754997528000, 338], [1754997529000, 327], [1754997530000, 344], [1754997531000, 354], [1754997532000, 320], [1754997533000, 361], [1754997534000, 352], [1754997535000, 325], [1754997536000, 319], [1754997537000, 385], [1754997538000, 325], [1754997539000, 396], [1754997540000, 327], [1754997541000, 353], [1754997542000, 317], [1754997543000, 327], [1754997544000, 317], [1754997545000, 322], [1754997546000, 323]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 3
+},
+         {
+pointInterval: 1000,
+name: '99%',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 471], [1754997501000, 375], [1754997502000, 457], [1754997503000, 328], [1754997504000, 436], [1754997505000, 402], [1754997506000, 438], [1754997507000, 363], [1754997508000, 446], [1754997509000, 379], [1754997510000, 357], [1754997511000, 345], [1754997512000, 343], [1754997513000, 328], [1754997514000, 314], [1754997515000, 347], [1754997516000, 359], [1754997517000, 309], [1754997518000, 336], [1754997519000, 423], [1754997520000, 400], [1754997521000, 367], [1754997522000, 415], [1754997523000, 349], [1754997524000, 378], [1754997525000, 365], [1754997526000, 332], [1754997527000, 378], [1754997528000, 338], [1754997529000, 327], [1754997530000, 344], [1754997531000, 354], [1754997532000, 320], [1754997533000, 361], [1754997534000, 352], [1754997535000, 325], [1754997536000, 319], [1754997537000, 385], [1754997538000, 325], [1754997539000, 396], [1754997540000, 327], [1754997541000, 353], [1754997542000, 317], [1754997543000, 327], [1754997544000, 317], [1754997545000, 322], [1754997546000, 323]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 2
+},
+         {
+pointInterval: 1000,
+name: 'max',
+data: [[1754997490000, 1275], [1754997491000, null], [1754997492000, 530], [1754997493000, 535], [1754997494000, 472], [1754997495000, 316], [1754997496000, 678], [1754997497000, null], [1754997498000, 419], [1754997499000, 402], [1754997500000, 471], [1754997501000, 375], [1754997502000, 457], [1754997503000, 328], [1754997504000, 436], [1754997505000, 402], [1754997506000, 438], [1754997507000, 363], [1754997508000, 446], [1754997509000, 379], [1754997510000, 357], [1754997511000, 345], [1754997512000, 343], [1754997513000, 328], [1754997514000, 314], [1754997515000, 347], [1754997516000, 359], [1754997517000, 309], [1754997518000, 336], [1754997519000, 423], [1754997520000, 400], [1754997521000, 367], [1754997522000, 415], [1754997523000, 349], [1754997524000, 378], [1754997525000, 365], [1754997526000, 332], [1754997527000, 378], [1754997528000, 338], [1754997529000, 327], [1754997530000, 344], [1754997531000, 354], [1754997532000, 320], [1754997533000, 361], [1754997534000, 352], [1754997535000, 325], [1754997536000, 319], [1754997537000, 385], [1754997538000, 325], [1754997539000, 396], [1754997540000, 327], [1754997541000, 353], [1754997542000, 317], [1754997543000, 327], [1754997544000, 317], [1754997545000, 322], [1754997546000, 323]],
+tooltip: { yDecimals: 0, ySuffix: 'ms' },
+type : 'area',
+yAxis: 0,
+zIndex: 1
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'requests',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of requests per second</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+         },
+         select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Number of requests' },
+      opposite: false,
+      reversedStacks: false
+    }
+  ],
+  series: [
+    {
+color: '#5E7BE2',
+name: 'All',
+data: [[1754997490000, 1], [1754997491000, 0], [1754997492000, 1], [1754997493000, 1], [1754997494000, 1], [1754997495000, 1], [1754997496000, 2], [1754997497000, 0], [1754997498000, 2], [1754997499000, 2], [1754997500000, 3], [1754997501000, 3], [1754997502000, 3], [1754997503000, 3], [1754997504000, 4], [1754997505000, 2], [1754997506000, 4], [1754997507000, 4], [1754997508000, 4], [1754997509000, 2], [1754997510000, 6], [1754997511000, 5], [1754997512000, 3], [1754997513000, 6], [1754997514000, 2], [1754997515000, 6], [1754997516000, 3], [1754997517000, 5], [1754997518000, 3], [1754997519000, 5], [1754997520000, 6], [1754997521000, 2], [1754997522000, 6], [1754997523000, 4], [1754997524000, 4], [1754997525000, 3], [1754997526000, 5], [1754997527000, 4], [1754997528000, 5], [1754997529000, 5], [1754997530000, 3], [1754997531000, 5], [1754997532000, 4], [1754997533000, 4], [1754997534000, 5], [1754997535000, 4], [1754997536000, 5], [1754997537000, 3], [1754997538000, 5], [1754997539000, 4], [1754997540000, 5], [1754997541000, 4], [1754997542000, 3], [1754997543000, 6], [1754997544000, 4], [1754997545000, 4], [1754997546000, 4]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+,type: 'area'
+}
+  ]
+});
+
+new Highcharts.StockChart({
+  chart: {
+    renderTo: 'responses',
+    zoomType: 'x',
+    marginBottom: 60
+  },
+  credits: { enabled: false },
+  legend: {
+    enabled: true,
+    floating: true,
+    y: -65,
+    borderWidth: 0,
+    itemStyle: { fontWeight: "normal" },
+    symbolRadius: 0
+  },
+  title: {
+    text: '<span class="chart_title">Number of responses per second</span>',
+    useHTML: true
+  },
+  navigator: {
+    maskInside: false
+  },
+  rangeSelector: {
+    buttonSpacing: 0,
+    buttonTheme: {
+      fill: '#CFC9C6',
+      padding: 1,
+      stroke: '#000000',
+      'stroke-width': 0.25,
+      style: {
+        color: '#000000',
+        fontWeight: 'bold',
+      },
+      states: {
+        stroke: '#000000',
+        'stroke-width': 0.25,
+        hover: {
+          fill: '#92918C',
+          style: { color: 'black' }
+         },
+         select: {
+          fill: '#FFA900',
+          style: { color: 'white' }
+        }
+      }
+    },
+    buttons : [
+      {
+        type : 'minute',
+        count : 1,
+        text : '1m'
+      }, {
+        type : 'minute',
+        count : 10,
+        text : '10m'
+      }, {
+        type : 'hour',
+        count : 1,
+        text : '1h'
+      }, {
+        type : 'all',
+        count : 1,
+        text : 'All'
+      }
+    ],
+    selected : 3,
+    inputEnabled : false
+  },
+  plotOptions: {
+    series: {
+      dataGrouping: { enabled: false }
+    },
+    area: {
+      stacking: 'normal'
+    }
+  },
+  xAxis: {
+    type: 'datetime',
+    ordinal: false,
+    maxZoom: 10000 // three days
+  },
+  yAxis:[
+    {
+      min: 0,
+      title: { text: 'Number of responses' },
+      opposite: false,
+      reversedStacks: false
+    }
+  ],
+  series: [
+    {
+color: '#5E7BE2',
+name: 'All',
+data: [[1754997490000, 0], [1754997491000, 1], [1754997492000, 0], [1754997493000, 1], [1754997494000, 2], [1754997495000, 1], [1754997496000, 0], [1754997497000, 2], [1754997498000, 2], [1754997499000, 2], [1754997500000, 1], [1754997501000, 4], [1754997502000, 3], [1754997503000, 3], [1754997504000, 4], [1754997505000, 2], [1754997506000, 4], [1754997507000, 3], [1754997508000, 4], [1754997509000, 3], [1754997510000, 5], [1754997511000, 6], [1754997512000, 2], [1754997513000, 6], [1754997514000, 4], [1754997515000, 4], [1754997516000, 3], [1754997517000, 5], [1754997518000, 5], [1754997519000, 4], [1754997520000, 5], [1754997521000, 3], [1754997522000, 5], [1754997523000, 4], [1754997524000, 4], [1754997525000, 5], [1754997526000, 4], [1754997527000, 5], [1754997528000, 3], [1754997529000, 5], [1754997530000, 4], [1754997531000, 4], [1754997532000, 6], [1754997533000, 2], [1754997534000, 6], [1754997535000, 4], [1754997536000, 4], [1754997537000, 3], [1754997538000, 6], [1754997539000, 4], [1754997540000, 3], [1754997541000, 5], [1754997542000, 5], [1754997543000, 5], [1754997544000, 3], [1754997545000, 4], [1754997546000, 6]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+
+},
+{
+color: '#68b65c',
+name: 'OK',
+data: [[1754997490000, 0], [1754997491000, 1], [1754997492000, 0], [1754997493000, 1], [1754997494000, 2], [1754997495000, 1], [1754997496000, 0], [1754997497000, 2], [1754997498000, 2], [1754997499000, 2], [1754997500000, 1], [1754997501000, 4], [1754997502000, 3], [1754997503000, 3], [1754997504000, 4], [1754997505000, 2], [1754997506000, 4], [1754997507000, 3], [1754997508000, 4], [1754997509000, 3], [1754997510000, 5], [1754997511000, 6], [1754997512000, 2], [1754997513000, 6], [1754997514000, 4], [1754997515000, 4], [1754997516000, 3], [1754997517000, 5], [1754997518000, 5], [1754997519000, 4], [1754997520000, 5], [1754997521000, 3], [1754997522000, 5], [1754997523000, 4], [1754997524000, 4], [1754997525000, 5], [1754997526000, 4], [1754997527000, 5], [1754997528000, 3], [1754997529000, 5], [1754997530000, 4], [1754997531000, 4], [1754997532000, 6], [1754997533000, 2], [1754997534000, 6], [1754997535000, 4], [1754997536000, 4], [1754997537000, 3], [1754997538000, 6], [1754997539000, 4], [1754997540000, 3], [1754997541000, 5], [1754997542000, 5], [1754997543000, 5], [1754997544000, 3], [1754997545000, 4], [1754997546000, 6]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+,type: 'area'
+},
+{
+color: '#f15b4f',
+name: 'KO',
+data: [[1754997490000, 0], [1754997491000, 0], [1754997492000, 0], [1754997493000, 0], [1754997494000, 0], [1754997495000, 0], [1754997496000, 0], [1754997497000, 0], [1754997498000, 0], [1754997499000, 0], [1754997500000, 0], [1754997501000, 0], [1754997502000, 0], [1754997503000, 0], [1754997504000, 0], [1754997505000, 0], [1754997506000, 0], [1754997507000, 0], [1754997508000, 0], [1754997509000, 0], [1754997510000, 0], [1754997511000, 0], [1754997512000, 0], [1754997513000, 0], [1754997514000, 0], [1754997515000, 0], [1754997516000, 0], [1754997517000, 0], [1754997518000, 0], [1754997519000, 0], [1754997520000, 0], [1754997521000, 0], [1754997522000, 0], [1754997523000, 0], [1754997524000, 0], [1754997525000, 0], [1754997526000, 0], [1754997527000, 0], [1754997528000, 0], [1754997529000, 0], [1754997530000, 0], [1754997531000, 0], [1754997532000, 0], [1754997533000, 0], [1754997534000, 0], [1754997535000, 0], [1754997536000, 0], [1754997537000, 0], [1754997538000, 0], [1754997539000, 0], [1754997540000, 0], [1754997541000, 0], [1754997542000, 0], [1754997543000, 0], [1754997544000, 0], [1754997545000, 0], [1754997546000, 0]],
+tooltip: { yDecimals: 0, ySuffix: '', valueDecimals: 0 }
+,type: 'area'
+},
+{
+type: 'pie',
+name: 'Distribution',
+data: [
+  {name: 'OK', y: 203, color: '#68b65c'},
+  {name: 'KO', y: 0, color: '#f15b4f'}
+],
+center: [775, -40],
+size: 70,
+showInLegend: false,
+dataLabels: { enabled: false },
+dataGrouping: { enabled: false }
+}
+  ]
+});
+
+    });
+</script>
+</div>
+</body>
+</html>
