@@ -2,6 +2,7 @@
 /Users/macvn/Documents/Gatling/src/test/java/videogamedb/RecordedSimulationProxy.java
 /Users/macvn/Documents/Gatling/src/test/java/videogamedb/feeders/VideoGameDbFeeders.java
 /Users/macvn/Documents/Gatling/src/test/java/videogamedb/finalSimulation/VideoGameDbFullTest.java
+/Users/macvn/Documents/Gatling/src/test/java/videogamedb/finalSimulation/VideoGameDbFullTest_randomSwitch.java
 /Users/macvn/Documents/Gatling/src/test/java/videogamedb/scriptfundamentals/CreateVideoGame.java
 /Users/macvn/Documents/Gatling/src/test/java/videogamedb/scriptfundamentals/MyFirstTest.java
 /Users/macvn/Documents/Gatling/src/test/java/videogamedb/scriptfundamentals/VideoGameDb.java
