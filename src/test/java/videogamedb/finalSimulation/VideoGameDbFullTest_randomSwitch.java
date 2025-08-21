@@ -77,6 +77,27 @@ public class VideoGameDbFullTest_randomSwitch extends Simulation {
                     .check(status().is(200))
                     .check(jmesPath("name").isEL("#{name}")));
 
+    private static ChainBuilder updateLastPostedGame =
+            exec(http("Update Last Posted Game - #{name}")
+                    .put("/videogame/#{id}")
+                    .header("Authorization","Bearer #{jwtToken}")
+                    .body(StringBody("{\n" +
+                            "  \"category\": \"Platform\",\n" +
+                            "  \"name\": \"Mario\",\n" +
+                            "  \"rating\": \"Mature\",\n" +
+                            "  \"releaseDate\": \"2012-05-04\",\n" +
+                            "  \"reviewScore\": 85\n" +
+                            "}"))
+                    .check(status().is(200)))
+
+                    .exec(
+                            session -> {
+                                System.out.println(session);
+                                System.out.println("Response body Update Posted Game " + session.getString("responseBody"));
+                                return session;
+                            }
+                    );
+
     private static ChainBuilder deleteLastPostedGame =
             exec(http("Delete Game - #{name}")
                     .delete("/videogame/#{id}")
@@ -107,6 +128,9 @@ public class VideoGameDbFullTest_randomSwitch extends Simulation {
                     .pause(2)
 
                     .exec(getLastPostedGame) // get id
+                    .pause(2)
+
+                    .exec(updateLastPostedGame)
                     .pause(2)
 
                     .exec(deleteLastPostedGame); // delete by id
