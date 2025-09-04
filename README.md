@@ -1,33 +1,36 @@
-# Gatling Bundle
+# Gatling Maven Demo - VideoGameDb Performance Tests
 
-The Gatling Bundle gives you a quick start to your Gatling journey.
-It is based on the [Gatling Maven Plugin demo, in Java](https://github.com/gatling/gatling-maven-plugin-demo-java).
+This project is a **Gatling performance testing framework** built using **Java DSL** and **Maven**.  
+It simulates load tests against the `VideoGameDb` API with different scenarios such as CRUD operations, authentication, and random weighted execution.
 
-## Run a test locally
+**Run a specific simulation**
+mvn gatling:test -Dgatling.simulationClass=videogamedb.finalSimulation.VideoGameDbFullTest
 
-On Linux / MacOS:
-```console
-./mvnw gatling:test
-```
+🛠 Features
 
-On Windows:
-```console
-mvnw.cmd gatling:test
-```
+Feeders (CSV, JSON) for dynamic test data
 
-## Run the Gatling Recorder
+Authentication flow with token handling
 
-On Linux / MacOS:
-```console
-./mvnw gatling:recorder
-```
+CRUD operations (Create, Read, Update, Delete)
 
-On Windows:
-```console
-mvnw.cmd gatling:recorder
-```
+RandomSwitch scenarios for weighted execution
 
-## To go further
+Pauses for more realistic user behavior
 
-* [our scripting introduction](https://docs.gatling.io/tutorials/scripting-intro/)
-* [the Gatling Maven plugin documentation](https://docs.gatling.io/reference/extensions/build-tools/maven-plugin/)
+Maven + Gatling plugin integration
+
+Reports automatically generated after test execution
+
+⚙️ Configuration
+
+Simulation Parameters (e.g., USER_COUNT, TEST_DURATION, BASE_REQUESTS)
+can be defined inside the simulation class or externalized via properties.
+
+✅ Requirements
+
+Java 17+
+
+Maven 3.8+
+
+Gatling Maven Plugin
